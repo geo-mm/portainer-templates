@@ -694,7 +694,7 @@
     "env": [
       {
         "name": "DB_NAME",
-        "label": "Database root password",
+        "label": "Database db name",
         "description": "Password used by the PostgreSQL database."
       },
       {
