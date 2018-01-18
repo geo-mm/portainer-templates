@@ -32,5 +32,11 @@ networks:
 
 volumes:
   git_data:
+    external:
+      name: git-data
   git_templates:
+    external:
+      name: git-templates  
   git_db:
+    external:
+      name: git-db
