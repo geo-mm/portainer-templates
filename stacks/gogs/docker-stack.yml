@@ -3,40 +3,43 @@ version: '3'
 services:
   gogs-git:
     image: gogs/gogs
+    depends_on:
+      - gogs-db    
     ports:
     - "22:22"
     - "80:3000"
     volumes:
-    - git_data:/data
-    - git_templates:/app/gogs/templates
+      - type: bind
+        source: /opt/gogs-git/data
+        target: /data
+      - type: bind
+        source: /opt/gogs-git/templates
+        target: /app/gogs/templates
     restart: always
     networks:
     - git
+    deploy:
+      placement:
+        constraints: [node.role == manager]
 
   gogs-db:
     image: sameersbn/postgresql
     ports:
-    - 5432
+    - "5432:5432"
     restart: always
     volumes:
-    - git_db:/var/lib/postgresql
+      - type: bind
+        source: /opt/gogs-git/db
+        target: /var/lib/postgresql
     environment:
       DB_NAME: ${DB_NAME}
       DB_USER: ${DB_USER}
       DB_PASS: ${DB_PASS}
     networks:
     - git
+    deploy:
+      placement:
+        constraints: [node.role == manager]
 
 networks:
   git:
-
-volumes:
-  git_data:
-    external:
-      name: git-data
-  git_templates:
-    external:
-      name: git-templates  
-  git_db:
-    external:
-      name: git-db
