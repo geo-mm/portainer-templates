@@ -9,12 +9,8 @@ services:
     - "22:22"
     - "80:3000"
     volumes:
-      - type: bind
-        source: /opt/gogs-git/data
-        target: /data
-      - type: bind
-        source: /opt/gogs-git/templates
-        target: /app/gogs/templates
+      - "/opt/gogs-git/data:/data"
+      - "/opt/gogs-git/templates:/app/gogs/templates"
     restart: always
     networks:
     - git
@@ -28,9 +24,7 @@ services:
     - "5432:5432"
     restart: always
     volumes:
-      - type: bind
-        source: /opt/gogs-git/db
-        target: /var/lib/postgresql
+      - "/opt/gogs-git/db:/var/lib/postgresql"
     environment:
       DB_NAME: ${DB_NAME}
       DB_USER: ${DB_USER}
