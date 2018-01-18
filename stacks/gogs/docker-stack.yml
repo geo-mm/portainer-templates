@@ -7,8 +7,8 @@ services:
     - "22:22"
     - "80:3000"
     volumes:
-    - /opt/gogs-git/gogs/data:/data
-    - /opt/gogs-git/gogs/templates:/app/gogs/templates
+    - git_data:/data
+    - git_templates:/app/gogs/templates
     restart: always
     networks:
     - git
@@ -19,7 +19,7 @@ services:
     - 5432
     restart: always
     volumes:
-    - /opt/gogs-git/gogs/db:/var/lib/postgresql
+    - git_db:/var/lib/postgresql
     environment:
       DB_NAME: ${DB_NAME}
       DB_USER: ${DB_USER}
@@ -29,8 +29,8 @@ services:
 
 networks:
   git:
-    driver: overlay
-      ipam:
-        driver: default
-        config:
-        - subnet: 192.168.100.0/24
+
+volumes:
+  git_data:
+  git_templates:
+  git_db:
