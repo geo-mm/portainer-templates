@@ -695,7 +695,7 @@
       {
         "name": "DB_NAME",
         "label": "Database db name",
-        "description": "Password used by the PostgreSQL database."
+        "description": "DB name used by the PostgreSQL database."
       },
       {
         "name": "DB_USER",
