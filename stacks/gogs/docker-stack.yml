@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  gogs-git:
+    image: gogs/gogs
+    ports:
+    - "22:22"
+    - "80:3000"
+    volumes:
+    - /opt/gogs-git/gogs/data:/data
+    - /opt/gogs-git/gogs/templates:/app/gogs/templates
+    restart: always
+    networks:
+    - git
+
+  gogs-db:
+    image: sameersbn/postgresql
+    ports:
+    - 5432
+    restart: always
+    volumes:
+    - /opt/gogs-git/gogs/db:/var/lib/postgresql
+    environment:
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+    networks:
+    - git
+
+networks:
+  git:
+    driver: overlay
+      ipam:
+        driver: default
+        config:
+        - subnet: 192.168.100.0/24

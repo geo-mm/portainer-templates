@@ -656,7 +656,7 @@
     "platform": "linux",
     "logo": "https://cloudinovasi.id/assets/img/logos/cockroachdb.png",
     "repository": {
-      "url": "https://github.com/portainer/templates",
+      "url": "https://github.com/geo-mm/portainer-templates",
       "stackfile": "stacks/cockroachdb/docker-stack.yml"
     }
   },
@@ -669,7 +669,7 @@
     "platform": "linux",
     "logo": "https://cloudinovasi.id/assets/img/logos/wordpress.png",
     "repository": {
-      "url": "https://github.com/portainer/templates",
+      "url": "https://github.com/geo-mm/portainer-templates",
       "stackfile": "stacks/wordpress/docker-stack.yml"
     },
     "env": [
@@ -677,6 +677,35 @@
         "name": "MYSQL_ROOT_PASSWORD",
         "label": "Database root password",
         "description": "Password used by the MySQL root user."
+      }
+    ]
+  },
+  {
+    "type": "stack",
+    "title": "Gogs",
+    "description": "Git server written by Go",
+    "note": "Deploys a Gogs instance connected to a PostgreSQL server",
+    "categories": ["git"],
+    "platform": "linux",
+    "repository": {
+      "url": "https://github.com/geo-mm/portainer-templates",
+      "stackfile": "stacks/gogs/docker-stack.yml"
+    },
+    "env": [
+      {
+        "name": "DB_NAME",
+        "label": "Database root password",
+        "description": "Password used by the PostgreSQL database."
+      },
+      {
+        "name": "DB_USER",
+        "label": "Database user name",
+        "description": "Password used by the PostgreSQL database."
+      },
+      {
+        "name": "DB_PASS",
+        "label": "Database user password",
+        "description": "Password used by the PostgreSQL database."
       }
     ]
   }
