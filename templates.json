@@ -700,7 +700,7 @@
       {
         "name": "DB_USER",
         "label": "Database user name",
-        "description": "Password used by the PostgreSQL database."
+        "description": "User name used by the PostgreSQL database."
       },
       {
         "name": "DB_PASS",
