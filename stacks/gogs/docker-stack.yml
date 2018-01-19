@@ -13,7 +13,7 @@ services:
       - "/opt/gogs-git/templates:/app/gogs/templates"
     restart: always
     networks:
-    - git
+    - gogs-git
     deploy:
       placement:
         constraints: [node.role == manager]
@@ -30,10 +30,12 @@ services:
       DB_USER: ${DB_USER}
       DB_PASS: ${DB_PASS}
     networks:
-    - git
+    - gogs-git
     deploy:
       placement:
         constraints: [node.role == manager]
 
 networks:
-  git:
+  gogs-git:
+    external:
+      name: git
