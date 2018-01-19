@@ -38,4 +38,4 @@ services:
 networks:
   gogs-git:
     external:
-      name: git
+      name: tainan-dev
